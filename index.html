@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>TSE Options Terminal | ترمینال اختیار معامله بورس تهران</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/style.css?v=5.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#96f6c7",
+            "tertiary": "#714100",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f8f9ff",
+            "inverse-surface": "#203245",
+            "secondary": "#006c4a",
+            "surface-container-low": "#eef4ff",
+            "on-error-container": "#93000a",
+            "surface-container": "#e4efff",
+            "surface-tint": "#035ac3",
+            "surface-container-high": "#dae9ff",
+            "on-primary-fixed": "#001a42",
+            "primary-fixed-dim": "#aec6ff",
+            "secondary-fixed": "#96f6c7",
+            "inverse-primary": "#aec6ff",
+            "surface-container-highest": "#d1e4fd",
+            "outline": "#727784",
+            "on-surface": "#091d2f",
+            "tertiary-fixed-dim": "#ffb86e",
+            "on-secondary-fixed": "#002114",
+            "on-tertiary-fixed-variant": "#693c00",
+            "on-secondary-container": "#00734f",
+            "secondary-fixed-dim": "#7ad9ac",
+            "primary": "#0048a0",
+            "on-secondary-fixed-variant": "#005237",
+            "surface-bright": "#f8f9ff",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-surface-variant": "#424753",
+            "inverse-on-surface": "#e9f1ff",
+            "on-primary-fixed-variant": "#004396",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "surface-dim": "#c9dcf5",
+            "primary-fixed": "#d8e2ff",
+            "on-tertiary-fixed": "#2c1600",
+            "surface-variant": "#d1e4fd",
+            "tertiary-container": "#925600",
+            "on-background": "#091d2f",
+            "surface": "#f8f9ff",
+            "on-tertiary-container": "#ffdcbc",
+            "tertiary-fixed": "#ffdcbd",
+            "primary-container": "#1560c9",
+            "on-primary-container": "#d7e1ff",
+            "outline-variant": "#c2c6d5"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          spacing: {
+            "gutter-lg": "1rem",
+            "space-lg": "0.75rem",
+            "space-sm": "0.25rem",
+            "space-md": "0.5rem",
+            "margin-md": "1rem",
+            "space-xl": "1rem",
+            "space-xs": "0.125rem",
+            "margin-lg": "1.25rem",
+            "gutter": "0.5rem",
+            "margin": "0.75rem",
+            "gutter-md": "0.75rem"
+          },
+          fontFamily: {
+            "label-sm": ["JetBrains Mono"],
+            "title-md": ["Vazirmatn"],
+            "label-md": ["JetBrains Mono"],
+            "headline-lg": ["Vazirmatn"],
+            "headline-md": ["Vazirmatn"],
+            "label-lg": ["JetBrains Mono"],
+            "body-sm": ["Vazirmatn"],
+            "headline-sm": ["Vazirmatn"],
+            "body-md": ["Vazirmatn"]
+          },
+          fontSize: {
+            "label-sm": ["0.6875rem", {"lineHeight": "0.875rem", "fontWeight": "500"}],
+            "title-md": ["0.9375rem", {"lineHeight": "1.375rem", "fontWeight": "600"}],
+            "label-md": ["0.75rem", {"lineHeight": "1rem", "fontWeight": "500"}],
+            "headline-lg": ["1.75rem", {"lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "headline-md": ["1.375rem", {"lineHeight": "1.875rem", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "label-lg": ["0.8125rem", {"lineHeight": "1.125rem", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-sm": ["0.75rem", {"lineHeight": "1.125rem", "fontWeight": "400"}],
+            "headline-sm": ["1.125rem", {"lineHeight": "1.625rem", "fontWeight": "700"}],
+            "body-md": ["0.8125rem", {"lineHeight": "1.25rem", "fontWeight": "400"}]
+          }
+        }
+      }
+    };
+  </script>
+  <script src="assets/app.js?v=5.0" defer></script>
+</head>
+<body class="bg-surface text-on-surface antialiased select-none min-h-screen flex flex-col">
+
+  <!-- LOADER OVERLAY -->
+  <div id="loader-overlay" class="loader-overlay">
+    <div class="spinner"></div>
+    <div class="mt-4 text-secondary font-bold text-body-md" id="loader-text">در حال بارگذاری داده‌های زنده بورس تهران...</div>
+  </div>
+
+  <!-- FIXED HEADER -->
+  <header class="fixed top-0 w-full z-50 shadow-[0_1px_8px_rgba(0,0,0,0.04)] bg-surface-container-lowest/95 backdrop-blur-md">
+    <div class="w-full flex flex-col justify-between">
+      
+      <!-- Top Telemetry Sub-bar -->
+      <div class="h-10 w-full px-4 flex items-center justify-between bg-surface-container-low/80 border-b border-outline-variant/40">
+        <div class="flex items-center gap-space-md overflow-x-auto py-1">
+          <button onclick="scrollToCalc()" class="flex items-center gap-space-xs px-2 py-0.5 rounded bg-surface-container-highest/60 hover:bg-surface-container-highest text-on-surface-variant font-body-sm text-body-sm cursor-pointer transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-tertiary">calculate</span>
+            <span>ماشین‌حساب Bull Call Spread</span>
+          </button>
+          <button onclick="switchTab('cc'); scrollToCalcCC();" class="flex items-center gap-space-xs px-2 py-0.5 rounded bg-surface-container-highest/60 hover:bg-surface-container-highest text-on-surface-variant font-body-sm text-body-sm cursor-pointer transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-secondary">shield</span>
+            <span>محاسب Covered Call Offset</span>
+          </button>
+          <button onclick="switchTab('conversion')" class="flex items-center gap-space-xs px-2 py-0.5 rounded bg-surface-container-highest/60 hover:bg-surface-container-highest text-on-surface-variant font-body-sm text-body-sm cursor-pointer transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-primary">balance</span>
+            <span>تستر آربیتراژ Conversion</span>
+          </button>
+          <button onclick="toggleGoldenFilterMaster()" class="flex items-center gap-space-xs px-2 py-0.5 rounded bg-surface-container-highest/60 hover:bg-surface-container-highest text-on-surface-variant font-body-sm text-body-sm cursor-pointer transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-tertiary-container">bolt</span>
+            <span>فیلترهای سریع</span>
+          </button>
+        </div>
+        
+        <div class="flex items-center gap-space-lg flex-shrink-0">
+          <div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+            </span>
+            <span class="font-body-sm text-body-sm text-on-surface" id="market-source-lbl">متصل به API بورس تهران (TSETMC)</span>
+          </div>
+          <div class="h-3 w-px bg-outline-variant/60"></div>
+          <div class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+            <span>وضعیت بازار:</span>
+            <span class="px-1.5 py-0.2 rounded bg-secondary-container text-on-secondary-container font-medium" id="market-status-pill">باز (پیوسته)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Row -->
+      <div class="h-14 w-full px-4 flex items-center justify-between">
+        
+        <!-- Brand / Logo -->
+        <div class="flex items-center gap-space-lg">
+          <div class="flex items-center gap-space-md">
+            <img alt="TSE Options Terminal Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UESBAJsjX7a064GKEHNjPGzeeQVxt8SvIh-WA4fEODI0s7koZSfm0R3X1RtTgHXAjF3pmmrzaOm-9ZHIgjzV-GzcaCH7-fDNs_xTpB8Hlxn00xQ5Tk7CSkHTY_mY5BxjltI1IaKDbUNb7-RVquIMZclvq6Mcws2oUpIoHbVU6LOcDQwQ1NM_b253JttsFogv8ECQn4VmQ1p1zXp_URm4CshcHYv5uHm4w_twARxXlhz5Nls7EZnxfS"/>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-space-sm">
+                <span class="font-headline-sm text-headline-sm text-primary tracking-tight font-bold">ترمینال اختیار معامله</span>
+                <span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+                  <span class="h-1.5 w-1.5 rounded-full bg-error animate-pulse"></span>
+                  زنده (LIVE)
+                </span>
+              </div>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">تحلیل و رتبه‌بندی فرصت‌های معاملاتی مشتقه بورس تهران</span>
+            </div>
+          </div>
+
+          <div class="h-6 w-px bg-outline-variant/50 hidden md:block"></div>
+
+          <!-- Circular Auto-update countdown & reload -->
+          <div class="hidden sm:flex items-center gap-space-xs px-2 py-1 rounded-lg bg-surface-container">
+            <svg class="w-4 h-4 -rotate-90 text-primary" viewbox="0 0 36 36">
+              <path class="text-outline-variant/40" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+              <path class="text-primary transition-all duration-1000" id="cd-circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="100, 100" stroke-linecap="round" stroke-width="3"></path>
+            </svg>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">
+              آپدیت خودکار: <span class="font-label-md text-label-md font-bold text-on-surface" id="cd">۶۰s</span>
+            </span>
+            <button onclick="manRefresh()" class="text-on-surface-variant hover:text-primary transition-colors p-0.5" title="دریافت آخرین کش">
+              <span class="material-symbols-outlined text-[16px]">sync</span>
+            </button>
+            <button onclick="forceUpdateData()" class="text-on-surface-variant hover:text-secondary transition-colors p-0.5" title="تریگر دریافت زنده سرور">
+              <span class="material-symbols-outlined text-[16px]">bolt</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex items-center gap-space-sm bg-surface-container-low p-1 rounded-xl border border-outline-variant/40 overflow-x-auto" id="main-nav-tabs">
+          <button onclick="switchTab('bcs')" class="tab-btn flex items-center gap-space-xs px-3 py-1.5 transition-colors bg-primary-container text-on-primary-container font-bold rounded-lg shadow-sm" data-tab="bcs" id="nav-tab-bcs">
+            <span class="text-body-md font-body-md">Bull Call Spread</span>
+            <span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface" id="tab-badge-bcs">۰</span>
+          </button>
+          <button onclick="switchTab('cc')" class="tab-btn flex items-center gap-space-xs px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors font-title-md text-title-md" data-tab="cc" id="nav-tab-cc">
+            <span class="text-body-md font-body-md">Covered Call</span>
+            <span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface" id="tab-badge-cc">۰</span>
+          </button>
+          <button onclick="switchTab('collar')" class="tab-btn flex items-center gap-space-xs px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors font-title-md text-title-md" data-tab="collar" id="nav-tab-collar">
+            <span class="text-body-md font-body-md">Collar</span>
+            <span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface" id="tab-badge-collar">۰</span>
+          </button>
+          <button onclick="switchTab('conversion')" class="tab-btn flex items-center gap-space-xs px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors font-title-md text-title-md" data-tab="conversion" id="nav-tab-conversion">
+            <span class="text-body-md font-body-md">Conversion (آربیتراژ)</span>
+            <span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface" id="tab-badge-conversion">۰</span>
+          </button>
+          <button onclick="switchTab('edu')" class="tab-btn flex items-center gap-space-xs px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors font-title-md text-title-md" data-tab="edu" id="nav-tab-edu">
+            <span class="text-body-md font-body-md">📚 آموزش</span>
+          </button>
+        </nav>
+
+        <!-- Right utility actions -->
+        <div class="flex items-center gap-space-md">
+          <button onclick="toggleSound()" class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" id="btn-sound" title="صدا و هشدارها">
+            <span class="material-symbols-outlined text-[20px]" id="sound-icon">volume_up</span>
+          </button>
+          <button onclick="toggleDarkMode()" class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" id="btn-theme" title="حالت تیره / روشن">
+            <span class="material-symbols-outlined text-[20px]" id="theme-icon">dark_mode</span>
+          </button>
+          <button onclick="openSettingsModal()" class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" title="تنظیمات پارامترهای بلک-شولز">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+          </button>
+          <div class="h-6 w-px bg-outline-variant/50"></div>
+          <button onclick="openBasketModal()" class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary font-body-sm text-body-sm font-bold shadow-sm transition-colors" title="سبد سفارشات آماده">
+            <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+            <span class="hidden lg:inline">سبد (<span id="basket-count">۰</span>)</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="w-full pt-28 min-h-screen bg-surface flex-grow flex flex-col">
+    
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SCREEN 1: BULL CALL SPREAD                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="page-bcs" class="page-view flex flex-col w-full">
+      <div class="flex flex-col gap-space-lg p-space-lg w-full">
+        
+        <!-- TOP COMPACT TELEMETRY TICKER -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-low px-space-lg py-space-sm rounded-xl shadow-sm">
+          <div class="flex items-center gap-space-md">
+            <div class="flex items-center gap-space-xs text-primary font-title-md text-title-md">
+              <span class="material-symbols-outlined text-[18px]">trending_up</span>
+              <span>داشبورد استراتژی Bull Call Spread (اسپرد صعودی خرید)</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm">الگوریتم مشتقه TSE-v4.1</span>
+            <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">سودآوری در روند صعودی با ریسک کنترل‌شده</span>
+          </div>
+          <div class="flex items-center gap-space-lg font-label-sm text-label-sm">
+            <div class="flex items-center gap-space-xs text-on-surface-variant">
+              <span>نرخ بهره بدون ریسک (Risk-free):</span>
+              <span class="text-on-surface font-bold font-mono" id="bcs-rf-rate">۲۸.۵٪</span>
+            </div>
+            <div class="flex items-center gap-space-xs text-on-surface-variant">
+              <span>میانگین IV بازار:</span>
+              <span class="text-on-surface font-bold font-mono" id="bcs-iv-avg">۴۱.۲٪</span>
+            </div>
+            <div class="flex items-center gap-space-xs text-secondary font-bold">
+              <span class="material-symbols-outlined text-[14px]">bolt</span>
+              <span id="bcs-active-summary">۰ موقعیت فعال شناسایی‌شده</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 TOP METRIC CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md w-full">
+          <!-- Card 1: Teal -->
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#067a54]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px] text-secondary">explore</span>
+                  کل استراتژی‌های فعال
+                </span>
+                <div class="flex items-baseline gap-space-xs mt-1">
+                  <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono" id="bcs-st">۰</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">فرصت معاملاتی</span>
+                </div>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[22px]">bar_chart</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-space-md pt-space-xs">
+              <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[12px]">north</span>
+                بروزرسانی پیوسته
+              </span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant" id="bcs-filter-ratio">پوشش کامل بازار</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Golden Amber -->
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#8a6006]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-tertiary flex items-center gap-1 font-bold">
+                  <span class="material-symbols-outlined text-[16px]">grade</span>
+                  قراردادهای طلایی برگزیده
+                </span>
+                <div class="flex items-baseline gap-space-xs mt-1">
+                  <span class="font-label-lg text-[1.6rem] font-bold text-tertiary font-mono" id="bcs-gold">۰</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">موقعیت سوپر آلفا</span>
+                </div>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-[22px]">award_star</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-space-md pt-space-xs">
+              <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-mono">
+                حاشیه امنیت بالا
+              </span>
+              <span class="font-label-sm text-label-sm text-tertiary font-bold font-mono" id="bcs-max-roi">Max ROI: —</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Electric Blue -->
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#1560c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px] text-primary">layers</span>
+                  تنوع نمادهای پایه فعال
+                </span>
+                <div class="flex items-baseline gap-space-xs mt-1">
+                  <span class="font-label-lg text-[1.6rem] font-bold text-primary font-mono" id="bcs-su">۰</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">نماد سهام و ETF</span>
+                </div>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">pie_chart</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-space-md pt-space-xs">
+              <div class="flex gap-1" id="bcs-top-symbols">
+                <span class="font-label-sm text-label-sm px-1 py-0.2 rounded bg-surface-container text-on-surface">اهرم</span>
+                <span class="font-label-sm text-label-sm px-1 py-0.2 rounded bg-surface-container text-on-surface">شستا</span>
+                <span class="font-label-sm text-label-sm px-1 py-0.2 rounded bg-surface-container text-on-surface">فولاد</span>
+              </div>
+              <span class="font-body-sm text-body-sm text-on-surface-variant" id="bcs-sym-extra">+نمادهای دیگر</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Royal Purple -->
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#7128c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px] text-[#7128c9]">event</span>
+                  تنوع سررسیدهای معاملاتی
+                </span>
+                <div class="flex items-baseline gap-space-xs mt-1">
+                  <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono" id="bcs-se">۰</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">سررسید فعال</span>
+                </div>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">date_range</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-space-md pt-space-xs">
+              <div class="flex items-center gap-1" id="bcs-exp-preview">
+                <span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-mono">نزدیک</span>
+                <span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded bg-surface-container text-on-surface font-mono">میان‌مدت</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant font-bold font-mono" id="bcs-days-range">۱۴ تا ۹۰ روز</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOLDEN FILTER PANEL (⭐ الگوریتم طلایی) -->
+        <div class="relative bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-amber-500/10 rounded-xl p-space-lg shadow-md overflow-hidden border border-amber-500/20">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-md">
+            <div class="flex items-center gap-space-sm">
+              <div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-[20px]">stars</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-space-sm">
+                  <h2 class="font-headline-sm text-headline-sm text-tertiary font-bold tracking-tight">⭐ فیلتر هوشمند طلایی (الگوریتم شناسایی قراردادهای برگزیده)</h2>
+                  <span class="px-2 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-bold">ALPHA SCANNER</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">غربالگری خودکار استراتژی‌ها بر اساس حداقل انحراف بلک-شولز، بیشترین حاشیه امنیت و جریان نقدینگی خریدار/فروشنده</p>
+              </div>
+            </div>
+
+            <!-- Master Golden Switch Toggle -->
+            <div class="flex items-center gap-space-md bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-space-sm rounded-xl border border-outline-variant/30">
+              <div class="flex flex-col items-end">
+                <span class="font-title-md text-title-md text-on-surface font-bold">فیلتر طلایی خودکار</span>
+                <span class="font-body-sm text-body-sm text-secondary flex items-center gap-1" id="golden-status-text">
+                  <span class="h-2 w-2 rounded-full bg-secondary animate-pulse"></span>
+                  فعال (<span id="bcs-golden-matched">۰</span> قرارداد تطبیق‌یافته)
+                </span>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input checked class="sr-only peer" id="goldenToggle" onchange="toggleGoldenFilterMaster(this)" type="checkbox"/>
+                <div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- 6 Parametric Sliders & Condition Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-space-md pt-space-md border-t border-amber-500/15">
+            <!-- Control 1 -->
+            <div class="bg-surface-container-lowest/90 backdrop-blur-sm p-space-md rounded-lg flex flex-col justify-between border border-outline-variant/20">
+              <div class="flex justify-between items-center text-on-surface">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">حداقل حاشیه امنیت:</span>
+                <span class="font-label-md text-label-md font-bold text-secondary font-mono" id="lbl-gf-safety">≥ ۵٪</span>
+              </div>
+              <input class="w-full accent-[#006c4a] mt-2 cursor-pointer h-1.5 bg-surface-container-highest rounded-lg" id="gf-safety" max="45" min="0" step="1" type="range" value="5" oninput="updateFilterLabel('safety'); renderBCS();"/>
+              <div class="flex justify-between font-label-sm text-label-sm text-outline mt-1 font-mono">
+                <span>۰٪</span>
+                <span>۱۵٪</span>
+                <span>۴۵٪</span>
+              </div>
+            </div>
+
+            <!-- Control 2 -->
+            <div class="bg-surface-container-lowest/90 backdrop-blur-sm p-space-md rounded-lg flex flex-col justify-between border border-outline-variant/20">
+              <div class="flex justify-between items-center text-on-surface">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">حداقل سود (ROI):</span>
+                <span class="font-label-md text-label-md font-bold text-primary font-mono" id="lbl-gf-ret">≥ ۱۰٪</span>
+              </div>
+              <input class="w-full accent-[#0048a0] mt-2 cursor-pointer h-1.5 bg-surface-container-highest rounded-lg" id="gf-ret" max="150" min="0" step="5" type="range" value="10" oninput="updateFilterLabel('ret'); renderBCS();"/>
+              <div class="flex justify-between font-label-sm text-label-sm text-outline mt-1 font-mono">
+                <span>۰٪</span>
+                <span>۵۰٪</span>
+                <span>۱۵۰٪+</span>
+              </div>
+            </div>
+
+            <!-- Control 3 -->
+            <div class="bg-surface-container-lowest/90 backdrop-blur-sm p-space-md rounded-lg flex flex-col justify-between border border-outline-variant/20">
+              <div class="flex justify-between items-center text-on-surface">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">حداقل ارزش معامله:</span>
+                <span class="font-label-md text-label-md font-bold text-on-surface font-mono" id="lbl-gf-vol">≥ ۱ م.ر</span>
+              </div>
+              <input class="w-full accent-[#714100] mt-2 cursor-pointer h-1.5 bg-surface-container-highest rounded-lg" id="fvol" max="50" min="0" step="1" type="range" value="1" oninput="updateFilterLabel('vol'); renderBCS();"/>
+              <div class="flex justify-between font-label-sm text-label-sm text-outline mt-1 font-mono">
+                <span>۰</span>
+                <span>۱۰</span>
+                <span>۵۰ م.ر</span>
+              </div>
+            </div>
+
+            <!-- Control 4 -->
+            <div class="bg-surface-container-lowest/90 backdrop-blur-sm p-space-md rounded-lg flex flex-col justify-between border border-outline-variant/20">
+              <div class="flex justify-between items-center text-on-surface">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">وضعیت استرایک خرید (K₁):</span>
+              </div>
+              <div class="flex items-center gap-1 mt-2">
+                <button type="button" onclick="setK1StatusFilter('')" class="k1-btn flex-1 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold" data-status="">همه</button>
+                <button type="button" onclick="setK1StatusFilter('ITM')" class="k1-btn flex-1 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm" data-status="ITM">ITM</button>
+                <button type="button" onclick="setK1StatusFilter('ATM')" class="k1-btn flex-1 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm" data-status="ATM">ATM</button>
+                <button type="button" onclick="setK1StatusFilter('OTM')" class="k1-btn flex-1 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm" data-status="OTM">OTM</button>
+              </div>
+              <input type="hidden" id="gf-status" value=""/>
+              <span class="font-body-sm text-[10px] text-on-surface-variant mt-1" id="k1-status-hint">نمایش تمام وضعیت‌ها</span>
+            </div>
+
+            <!-- Control 5 -->
+            <div class="bg-surface-container-lowest/90 backdrop-blur-sm p-space-md rounded-lg flex flex-col justify-between border border-outline-variant/20">
+              <div class="flex justify-between items-center text-on-surface">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">حداقل پایین‌ترین سود:</span>
+                <span class="font-label-md text-label-md font-bold text-on-surface font-mono" id="lbl-gf-worst">≥ ۵٪</span>
+              </div>
+              <input class="w-full accent-[#1560c9] mt-2 cursor-pointer h-1.5 bg-surface-container-highest rounded-lg" id="gf-worst" max="50" min="-20" step="5" type="range" value="5" oninput="updateFilterLabel('worst'); renderBCS();"/>
+              <div class="flex justify-between font-label-sm text-label-sm text-outline mt-1 font-mono">
+                <span>-۲۰٪</span>
+                <span>۰٪</span>
+                <span>۵۰٪</span>
+              </div>
+            </div>
+
+            <!-- Control 6 -->
+            <div class="bg-surface-container-lowest/90 backdrop-blur-sm p-space-md rounded-lg flex flex-col justify-between border border-outline-variant/20">
+              <div class="flex justify-between items-center text-on-surface">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">حداکثر روز سررسید:</span>
+                <span class="font-label-md text-label-md font-bold text-tertiary font-mono" id="lbl-gf-days">≤ ۹۰ روز</span>
+              </div>
+              <input class="w-full accent-[#714100] mt-2 cursor-pointer h-1.5 bg-surface-container-highest rounded-lg" id="gf-days" max="180" min="10" step="5" type="range" value="90" oninput="updateFilterLabel('days'); renderBCS();"/>
+              <div class="flex justify-between font-label-sm text-label-sm text-outline mt-1 font-mono">
+                <span>۱۰ روز</span>
+                <span>۹۰</span>
+                <span>۱۸۰ روز</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILTER & TOOLBAR (نوار ابزار و فیلترهای استاندارد) -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex flex-wrap items-center gap-space-md">
+            <!-- Asset Dropdown -->
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+              <select id="fu" onchange="renderBCS()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه نمادهای پایه</option>
+              </select>
+            </div>
+
+            <!-- Expiry Dropdown -->
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_month</span>
+              <select id="fe" onchange="renderBCS()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه سررسیدها</option>
+              </select>
+            </div>
+
+            <!-- Sorting Selector -->
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">sort</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant">مرتب‌سازی:</span>
+              <select id="fs" onchange="renderBCS()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer font-bold">
+                <option value="gold" selected>⭐ قراردادهای طلایی اول</option>
+                <option value="ret">بیشترین بازدهی حداکثر (Max ROI)</option>
+                <option value="profit">بالاترین حاشیه امنیت (Safety Margin)</option>
+                <option value="loss">کمترین ریسک / Net Debit</option>
+                <option value="atm">نزدیک‌ترین نقطه سر به سر</option>
+                <option value="days">کمترین روز تا سررسید</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick Toggles & Reset -->
+          <div class="flex items-center gap-space-sm">
+            <button onclick="toggleQuickITM()" id="btn-quick-itm" class="flex items-center gap-space-xs px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-body-sm text-body-sm text-on-surface border border-outline-variant/20 cursor-pointer">
+              <span class="material-symbols-outlined text-[16px] text-primary">filter_alt</span>
+              <span id="quick-itm-text">فقط قراردادهای ITM / ATM</span>
+            </button>
+            <button onclick="resetBCSFilters()" class="p-1.5 rounded-lg bg-surface-container-low hover:bg-error-container hover:text-on-error-container transition-colors text-on-surface-variant cursor-pointer border border-outline-variant/20" title="بازنشانی فیلترها">
+              <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- MAIN DATA TABLE CONTAINER -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col border border-outline-variant/30">
+          
+          <!-- Table Status Bar -->
+          <div class="flex items-center justify-between px-space-lg py-space-sm bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm border-b border-outline-variant/30">
+            <div class="flex items-center gap-space-md">
+              <span class="font-bold text-on-surface flex items-center gap-1">
+                <span class="h-2 w-2 rounded-full bg-secondary"></span>
+                فهرست جامع ماتریس اسپردها (Bull Call Matrix)
+              </span>
+              <span class="font-label-sm text-label-sm font-mono" id="tcnt">نمایش در حال پردازش...</span>
+            </div>
+            <div class="flex items-center gap-space-lg font-label-sm text-label-sm">
+              <span class="flex items-center gap-1 text-tertiary font-bold">
+                <span class="material-symbols-outlined text-[14px]">grade</span>
+                نشانگر طلایی: دارای تاییدیه الگوریتم
+              </span>
+              <span>واحد قیمت: ریال (Rials)</span>
+            </div>
+          </div>
+
+          <!-- Table with horizontal scroll -->
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-right border-collapse whitespace-nowrap">
+              <thead>
+                <tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider h-9 border-b border-outline-variant/30">
+                  <th class="px-space-md py-1 text-center font-bold">رتبه</th>
+                  <th class="px-space-md py-1 font-bold">نماد پایه و قیمت زنده</th>
+                  <th class="px-space-md py-1 font-bold">سررسید (روز)</th>
+                  <th class="px-space-md py-1 font-bold">پای اول: خرید K₁</th>
+                  <th class="px-space-md py-1 font-bold">پای دوم: فروش K₂</th>
+                  <th class="px-space-md py-1 text-center font-bold">وضعیت K₁</th>
+                  <th class="px-space-md py-1 text-left font-bold">خالص پرداختی (سرمایه)</th>
+                  <th class="px-space-md py-1 text-left font-bold">نقطه سر به سر (BEP)</th>
+                  <th class="px-space-md py-1 text-center w-36 font-bold text-secondary">حاشیه امنیت (%)</th>
+                  <th class="px-space-md py-1 text-left font-bold">حداکثر سود (ریال)</th>
+                  <th class="px-space-md py-1 text-left font-bold text-secondary">حداکثر بازدهی (ROI)</th>
+                  <th class="px-space-md py-1 text-center font-bold">نسبت R/R</th>
+                  <th class="px-space-md py-1 text-left font-bold">ارزش معاملات</th>
+                  <th class="px-space-md py-1 text-center font-bold">عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="tb" class="divide-y divide-outline-variant/20 text-on-surface font-body-sm text-body-sm">
+                <!-- Rows dynamically injected by app.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table Footer / Pagination Info -->
+          <div class="flex items-center justify-between px-space-lg py-space-sm bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm border-t border-outline-variant/30">
+            <div class="flex items-center gap-space-sm">
+              <span id="bcs-table-summary">نمایش موقعیت‌های منتخب</span>
+              <button class="text-primary hover:underline font-bold text-body-sm cursor-pointer" onclick="showAllStrategies()">نمایش کل استراتژی‌ها بدون فیلتر طلایی</button>
+            </div>
+            <div class="flex items-center gap-space-xs font-label-sm text-label-sm font-mono">
+              <span class="px-2 py-1 rounded bg-surface-container-highest text-on-surface">استراتژی‌های محاسبه‌شده با تقویم معاملاتی TSE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DUAL COLUMN: INTERACTIVE CALCULATOR & PAYOFF PROFILE -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg w-full" id="calc-container">
+          
+          <!-- Calculator Controls (Left / Col-5) -->
+          <div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-md flex flex-col justify-between border border-outline-variant/30">
+            <div>
+              <div class="flex items-center justify-between pb-space-md border-b border-outline-variant/20">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-[20px] text-primary">calculate</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">ماشین‌حساب اختصاصی Bull Call Spread</h3>
+                </div>
+                <span class="px-2 py-0.5 rounded bg-surface-container-high font-label-sm text-label-sm text-on-surface font-bold font-mono" id="calcAssetTag">اهرم (فعال)</span>
+              </div>
+
+              <!-- Parameter Fields -->
+              <div class="grid grid-cols-2 gap-space-md mt-space-sm">
+                <!-- Strike Buy (K1) -->
+                <div class="flex flex-col">
+                  <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">قیمت اعمال خرید (K₁):</label>
+                  <div class="relative">
+                    <input class="w-full bg-surface-container-low px-space-md py-1.5 rounded-lg font-label-md text-label-md text-left text-on-surface font-mono focus:outline-none focus:bg-surface-bright border border-outline-variant/20" id="calcK1" oninput="recalcSpread()" step="50" type="number" value="20000"/>
+                    <span class="absolute left-2 top-2 text-[10px] font-label-sm text-outline font-mono">Rials</span>
+                  </div>
+                </div>
+
+                <!-- Strike Sell (K2) -->
+                <div class="flex flex-col">
+                  <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">قیمت اعمال فروش (K₂):</label>
+                  <div class="relative">
+                    <input class="w-full bg-surface-container-low px-space-md py-1.5 rounded-lg font-label-md text-label-md text-left text-on-surface font-mono focus:outline-none focus:bg-surface-bright border border-outline-variant/20" id="calcK2" oninput="recalcSpread()" step="50" type="number" value="24000"/>
+                    <span class="absolute left-2 top-2 text-[10px] font-label-sm text-outline font-mono">Rials</span>
+                  </div>
+                </div>
+
+                <!-- Premium Paid (Debit) -->
+                <div class="flex flex-col">
+                  <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">پریمیوم پرداختی Ask (خرید P₁):</label>
+                  <div class="relative">
+                    <input class="w-full bg-surface-container-low px-space-md py-1.5 rounded-lg font-label-md text-label-md text-left text-primary font-bold font-mono focus:outline-none focus:bg-surface-bright border border-outline-variant/20" id="calcAsk" oninput="recalcSpread()" step="10" type="number" value="2150"/>
+                    <span class="absolute left-2 top-2 text-[10px] font-label-sm text-outline font-mono">Rials</span>
+                  </div>
+                </div>
+
+                <!-- Premium Received (Credit) -->
+                <div class="flex flex-col">
+                  <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">پریمیوم دریافتی Bid (فروش P₂):</label>
+                  <div class="relative">
+                    <input class="w-full bg-surface-container-low px-space-md py-1.5 rounded-lg font-label-md text-label-md text-left text-secondary font-bold font-mono focus:outline-none focus:bg-surface-bright border border-outline-variant/20" id="calcBid" oninput="recalcSpread()" step="10" type="number" value="650"/>
+                    <span class="absolute left-2 top-2 text-[10px] font-label-sm text-outline font-mono">Rials</span>
+                  </div>
+                </div>
+
+                <!-- Underlying Price (S) -->
+                <div class="flex flex-col col-span-2">
+                  <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">قیمت فعلی سهم پایه (Spot Price S):</label>
+                  <div class="relative">
+                    <input class="w-full bg-surface-container-low px-space-md py-1.5 rounded-lg font-label-md text-label-md text-left text-on-surface font-mono focus:outline-none focus:bg-surface-bright border border-outline-variant/20" id="calcSpot" oninput="recalcSpread()" step="50" type="number" value="21450"/>
+                    <span class="absolute left-2 top-2 text-[10px] font-label-sm text-outline font-mono">Rials</span>
+                  </div>
+                </div>
+
+                <!-- Number of Contracts -->
+                <div class="flex flex-col col-span-2">
+                  <div class="flex justify-between">
+                    <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">تعداد موقعیت / قرارداد (Contracts):</label>
+                    <span class="font-label-sm text-label-sm text-primary font-bold font-mono" id="contractCountLabel">۱۰۰ قرارداد (معادل ۱۰۰,۰۰۰ سهم)</span>
+                  </div>
+                  <input class="w-full accent-[#0048a0] cursor-pointer h-2 bg-surface-container-highest rounded-lg" id="calcContracts" max="500" min="1" oninput="updateContractCount(this.value)" type="range" value="100"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Output Matrix Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-md mt-space-md border-t border-outline-variant/20">
+              <div class="bg-surface-container-low p-2 rounded-lg flex flex-col items-center justify-center text-center">
+                <span class="font-body-sm text-[11px] text-on-surface-variant">خالص پرداختی</span>
+                <span class="font-label-md text-label-md font-bold text-on-surface mt-1 font-mono" id="outNetDebit">۱,۵۰۰ ریال</span>
+                <span class="font-label-sm text-[10px] text-outline">حداکثر ضرر</span>
+              </div>
+              <div class="bg-surface-container-low p-2 rounded-lg flex flex-col items-center justify-center text-center">
+                <span class="font-body-sm text-[11px] text-on-surface-variant">حداکثر سود</span>
+                <span class="font-label-md text-label-md font-bold text-secondary mt-1 font-mono" id="outMaxProfit">۲,۵۰۰ ریال</span>
+                <span class="font-label-sm text-[10px] text-secondary">در قیمت K₂</span>
+              </div>
+              <div class="bg-surface-container-low p-2 rounded-lg flex flex-col items-center justify-center text-center">
+                <span class="font-body-sm text-[11px] text-on-surface-variant">نقطه سر به سر</span>
+                <span class="font-label-md text-label-md font-bold text-primary mt-1 font-mono" id="outBEP">۲۱,۵۰۰ ریال</span>
+                <span class="font-label-sm text-[10px] text-primary">BEP = K₁+Debit</span>
+              </div>
+              <div class="bg-surface-container-low p-2 rounded-lg flex flex-col items-center justify-center text-center">
+                <span class="font-body-sm text-[11px] text-on-surface-variant">نرخ بازدهی (ROI)</span>
+                <span class="font-label-md text-label-md font-bold text-secondary mt-1 font-mono" id="outROI">+۱۶۶.۷٪</span>
+                <span class="font-label-sm text-[10px] text-secondary">سود به سرمایه</span>
+              </div>
+            </div>
+
+            <!-- Bottom CTA Row -->
+            <div class="flex flex-wrap items-center justify-between gap-space-md pt-space-md mt-space-sm border-t border-outline-variant/20">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">کل سرمایه مورد نیاز (نقدینگی درگیر):</span>
+                <span class="font-label-lg text-label-lg font-bold text-primary font-mono" id="totalCapitalRequired">۱۵,۰۰۰,۰۰۰ تومان</span>
+              </div>
+              <button onclick="addCurrentSpreadToBasket()" class="px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-title-md text-title-md font-bold transition-colors flex items-center gap-1 shadow-sm cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]">send</span>
+                ارسال به سبد سفارشات
+              </button>
+            </div>
+          </div>
+
+          <!-- SVG Payoff Curve Diagram & Greeks Sandbox (Right / Col-7) -->
+          <div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-md flex flex-col justify-between border border-outline-variant/30">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-[20px] text-secondary">show_chart</span>
+                  <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">نمودار دینامیک سود و زیان (Payoff Curve در سررسید)</h3>
+                </div>
+                <div class="flex items-center gap-space-md font-label-sm text-label-sm">
+                  <span class="flex items-center gap-1 text-secondary">
+                    <span class="h-2.5 w-2.5 rounded bg-secondary"></span>
+                    ناحیه سود (Max Profit)
+                  </span>
+                  <span class="flex items-center gap-1 text-error">
+                    <span class="h-2.5 w-2.5 rounded bg-error"></span>
+                    ناحیه زیان محدود (Max Loss)
+                  </span>
+                </div>
+              </div>
+
+              <!-- Dynamic SVG Coordinates Diagram with Plateaus -->
+              <div class="w-full bg-surface-container-low rounded-xl p-space-md flex flex-col items-center justify-center my-space-xs relative overflow-hidden border border-outline-variant/20" id="svg-payoff-wrapper">
+                <!-- SVG dynamically updated by app.js -->
+                <svg id="payoff-svg" class="w-full h-56 select-none" viewbox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Payoff drawn here -->
+                </svg>
+              </div>
+            </div>
+
+            <!-- Greek Sensitivities Summary (دلتا، گاما، تتا، وگا) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-sm border-t border-outline-variant/20">
+              <div class="bg-surface-container-low px-space-md py-1.5 rounded-lg flex items-center justify-between border border-outline-variant/20">
+                <span class="font-body-sm text-body-sm text-on-surface-variant font-bold">دلتا (Delta):</span>
+                <span class="font-label-md text-label-md font-bold text-secondary font-mono" id="greek-delta">+۰.۴۲</span>
+              </div>
+              <div class="bg-surface-container-low px-space-md py-1.5 rounded-lg flex items-center justify-between border border-outline-variant/20">
+                <span class="font-body-sm text-body-sm text-on-surface-variant font-bold">گاما (Gamma):</span>
+                <span class="font-label-md text-label-md font-bold text-on-surface font-mono" id="greek-gamma">+۰.۰۰۱۴</span>
+              </div>
+              <div class="bg-surface-container-low px-space-md py-1.5 rounded-lg flex items-center justify-between border border-outline-variant/20">
+                <span class="font-body-sm text-body-sm text-on-surface-variant font-bold">تتا (Theta):</span>
+                <span class="font-label-md text-label-md font-bold text-error font-mono" id="greek-theta">-۱۴.۲ R</span>
+              </div>
+              <div class="bg-surface-container-low px-space-md py-1.5 rounded-lg flex items-center justify-between border border-outline-variant/20">
+                <span class="font-body-sm text-body-sm text-on-surface-variant font-bold">وگا (Vega):</span>
+                <span class="font-label-md text-label-md font-bold text-primary font-mono" id="greek-vega">+۸.۵</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SCREEN 2: COVERED CALL                                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="page-cc" class="page-view hidden flex-col w-full">
+      <div class="flex flex-col gap-space-lg p-space-lg w-full">
+        
+        <!-- Ticker -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-low px-space-lg py-space-sm rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex items-center gap-space-md">
+            <div class="flex items-center gap-space-xs text-secondary font-title-md text-title-md font-bold">
+              <span class="material-symbols-outlined text-[18px]">shield</span>
+              <span>داشبورد استراتژی Covered Call (فروش اختیار خرید پوشش‌دار با سهم)</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">ایجاد جریان درآمد نقدی پایدار</span>
+          </div>
+          <div class="flex items-center gap-space-lg font-label-sm text-label-sm">
+            <span class="text-on-surface-variant">ریسک استراتژی: افت شدید قیمت سهم پایه</span>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md w-full">
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#067a54]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">کل فرصت‌های CC</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono mt-1" id="cc-st">۰</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[22px]">shield</span>
+              </div>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant mt-2">قراردادهای دارای نقدینگی</span>
+          </div>
+
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#8a6006]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-tertiary flex items-center gap-1 font-bold">فرصت‌های طلایی CC</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-tertiary font-mono mt-1" id="cc-gold">۰</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-[22px]">award_star</span>
+              </div>
+            </div>
+            <span class="font-label-sm text-label-sm text-tertiary font-mono mt-2">سود ماهانه مطلوب با حاشیه بالا</span>
+          </div>
+
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#1560c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">بهترین بازده ماهانه</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-primary font-mono mt-1" id="cc-sb">—</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">calendar_month</span>
+              </div>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant mt-2">معادل بازده موثر سالانه</span>
+          </div>
+
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#7128c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">بهترین حاشیه امنیت</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono mt-1" id="cc-sa">—</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">lock</span>
+              </div>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant mt-2">حفاظت از سرمایه در برابر افت</span>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex flex-wrap items-center gap-space-md">
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+              <select id="cc-fu" onchange="renderCC()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه نمادهای پایه</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_month</span>
+              <select id="cc-fe" onchange="renderCC()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه سررسیدها</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="font-body-sm text-body-sm text-on-surface-variant">وضعیت اعمال:</span>
+              <select id="cc-fst" onchange="renderCC()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه</option>
+                <option value="ITM">ITM (در سود)</option>
+                <option value="ATM">ATM (بی‌تفاوت)</option>
+                <option value="OTM">OTM (خارج از سود)</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">sort</span>
+              <select id="cc-fs" onchange="renderCC()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer font-bold">
+                <option value="monthly">بیشترین بازده ماهانه</option>
+                <option value="total">بیشترین بازده کل</option>
+                <option value="safety">بیشترین حاشیه امنیت</option>
+                <option value="volume">بیشترین ارزش معاملات</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col border border-outline-variant/30">
+          <div class="flex items-center justify-between px-space-lg py-space-sm bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm border-b border-outline-variant/30">
+            <span class="font-bold text-on-surface flex items-center gap-1">
+              <span class="h-2 w-2 rounded-full bg-secondary"></span>
+              جدول فرصت‌های Covered Call
+            </span>
+            <span class="font-label-sm text-label-sm font-mono" id="cc-tcnt">—</span>
+          </div>
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-right border-collapse whitespace-nowrap">
+              <thead>
+                <tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider h-9 border-b border-outline-variant/30">
+                  <th class="px-space-md py-1 text-center font-bold">#</th>
+                  <th class="px-space-md py-1 font-bold">نماد اختیار</th>
+                  <th class="px-space-md py-1 font-bold">نماد پایه</th>
+                  <th class="px-space-md py-1 font-bold">سررسید</th>
+                  <th class="px-space-md py-1 font-bold">روز</th>
+                  <th class="px-space-md py-1 font-bold">قیمت سهم S</th>
+                  <th class="px-space-md py-1 font-bold">قیمت اعمال K</th>
+                  <th class="px-space-md py-1 font-bold">پریمیوم P</th>
+                  <th class="px-space-md py-1 font-bold">ارزش معاملات</th>
+                  <th class="px-space-md py-1 font-bold text-secondary">سود کل %</th>
+                  <th class="px-space-md py-1 font-bold text-secondary">سود ماهانه %</th>
+                  <th class="px-space-md py-1 font-bold">سر به سر (حاشیه %)</th>
+                  <th class="px-space-md py-1 text-center font-bold">وضعیت</th>
+                  <th class="px-space-md py-1 text-center font-bold">محاسبه</th>
+                </tr>
+              </thead>
+              <tbody id="cc-tb" class="divide-y divide-outline-variant/20 text-on-surface font-body-sm text-body-sm">
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Covered Call Offset Calculator -->
+        <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-md border border-outline-variant/30" id="calc-cc-box">
+          <div class="flex items-center justify-between pb-space-md border-b border-outline-variant/20">
+            <div class="flex items-center gap-space-xs">
+              <span class="material-symbols-outlined text-[20px] text-secondary">shield</span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">محاسبه‌گر آفست کاوردکال (Covered Call Offset & P&L)</h3>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">محاسبه آنی موقعیت باز</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mt-space-md">
+            <div class="flex flex-col">
+              <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">قیمت خرید اولیه سهم (S₀):</label>
+              <input type="number" id="cco-s0" placeholder="قیمت خرید سهم" class="bg-surface-container-low px-space-md py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20" oninput="calcCCOffset()"/>
+            </div>
+            <div class="flex flex-col">
+              <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">قیمت سهم الان (S):</label>
+              <input type="number" id="cco-snow" placeholder="قیمت فعلی سهم" class="bg-surface-container-low px-space-md py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20" oninput="calcCCOffset()"/>
+            </div>
+            <div class="flex flex-col">
+              <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">پریمیوم دریافتی فروش کال (P_sold):</label>
+              <input type="number" id="cco-psold" placeholder="پریمیوم دریافتی" class="bg-surface-container-low px-space-md py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20" oninput="calcCCOffset()"/>
+            </div>
+            <div class="flex flex-col">
+              <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">قیمت کال الان در بازار (P):</label>
+              <input type="number" id="cco-pnow" placeholder="پریمیوم فعلی" class="bg-surface-container-low px-space-md py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20" oninput="calcCCOffset()"/>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md mt-space-md pt-space-md border-t border-outline-variant/20">
+            <div class="bg-surface-container-low p-3 rounded-lg text-center">
+              <div class="font-body-sm text-on-surface-variant">سود استراتژی در زمان ورود</div>
+              <div class="font-label-lg font-bold text-primary font-mono mt-1" id="cco-orig">—</div>
+            </div>
+            <div class="bg-surface-container-low p-3 rounded-lg text-center">
+              <div class="font-body-sm text-on-surface-variant">سود آفست در حال حاضر</div>
+              <div class="font-label-lg font-bold text-secondary font-mono mt-1" id="cco-now">—</div>
+            </div>
+            <div class="bg-surface-container-low p-3 rounded-lg text-center">
+              <div class="font-body-sm text-on-surface-variant">تحقق سود اولیه (Coverage)</div>
+              <div class="font-label-lg font-bold text-tertiary font-mono mt-1" id="cco-cov">—</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SCREEN 3: COLLAR                                       -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="page-collar" class="page-view hidden flex-col w-full">
+      <div class="flex flex-col gap-space-lg p-space-lg w-full">
+        
+        <!-- Ticker -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-low px-space-lg py-space-sm rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex items-center gap-space-md">
+            <div class="flex items-center gap-space-xs text-primary font-title-md text-title-md font-bold">
+              <span class="material-symbols-outlined text-[18px]">lock</span>
+              <span>داشبورد استراتژی Collar (بیمه سبد سهام با سقف سود و کف ضرر مشخص)</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-label-sm">خرید پوت + فروش کال + سهام پایه</span>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md w-full">
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#067a54]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">کل ترکیب‌های فعال</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono mt-1" id="col-st">۰</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[22px]">lock</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#8a6006]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-tertiary font-bold">ترکیب‌های طلایی</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-tertiary font-mono mt-1" id="col-gold">۰</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-[22px]">grade</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#1560c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">بهترین سود حداکثر %</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-primary font-mono mt-1" id="col-sbp">—</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">trending_up</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#7128c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">کمترین ضرر مجاز %</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono mt-1" id="col-sbl">—</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">security</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex flex-wrap items-center gap-space-md">
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+              <select id="col-fu" onchange="renderCollar()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه نمادهای پایه</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_month</span>
+              <select id="col-fe" onchange="renderCollar()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه سررسیدها</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">sort</span>
+              <select id="col-fs" onchange="renderCollar()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer font-bold">
+                <option value="gold">⭐ طلایی‌ها اول</option>
+                <option value="profit">بیشترین سود</option>
+                <option value="loss">کمترین ضرر</option>
+                <option value="net">بیشترین خالص پرمیوم</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col border border-outline-variant/30">
+          <div class="flex items-center justify-between px-space-lg py-space-sm bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm border-b border-outline-variant/30">
+            <span class="font-bold text-on-surface flex items-center gap-1">
+              <span class="h-2 w-2 rounded-full bg-secondary"></span>
+              جدول استراتژی‌های Collar
+            </span>
+            <span class="font-label-sm text-label-sm font-mono" id="col-tcnt">—</span>
+          </div>
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-right border-collapse whitespace-nowrap">
+              <thead>
+                <tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider h-9 border-b border-outline-variant/30">
+                  <th class="px-space-md py-1 text-center font-bold">#</th>
+                  <th class="px-space-md py-1 font-bold">نماد پایه</th>
+                  <th class="px-space-md py-1 font-bold">نماد کال</th>
+                  <th class="px-space-md py-1 font-bold">نماد پوت</th>
+                  <th class="px-space-md py-1 font-bold">سررسید</th>
+                  <th class="px-space-md py-1 font-bold">روز</th>
+                  <th class="px-space-md py-1 font-bold">قیمت سهم S</th>
+                  <th class="px-space-md py-1 font-bold">K پوت</th>
+                  <th class="px-space-md py-1 font-bold">K کال</th>
+                  <th class="px-space-md py-1 font-bold text-error">P پوت</th>
+                  <th class="px-space-md py-1 font-bold text-secondary">P کال</th>
+                  <th class="px-space-md py-1 font-bold">خالص پرمیوم</th>
+                  <th class="px-space-md py-1 font-bold text-secondary">حداکثر سود %</th>
+                  <th class="px-space-md py-1 font-bold text-error">حداکثر ضرر %</th>
+                  <th class="px-space-md py-1 font-bold">سر به سر</th>
+                  <th class="px-space-md py-1 text-center font-bold">محاسبه</th>
+                </tr>
+              </thead>
+              <tbody id="col-tb" class="divide-y divide-outline-variant/20 text-on-surface font-body-sm text-body-sm">
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SCREEN 4: CONVERSION (ARBITRAGE)                       -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="page-conversion" class="page-view hidden flex-col w-full">
+      <div class="flex flex-col gap-space-lg p-space-lg w-full">
+        
+        <!-- Ticker -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-low px-space-lg py-space-sm rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex items-center gap-space-md">
+            <div class="flex items-center gap-space-xs text-primary font-title-md text-title-md font-bold">
+              <span class="material-symbols-outlined text-[18px]">balance</span>
+              <span>داشبورد استراتژی Conversion (آربیتراژ قطعی و بدون ریسک ناشی از عدم تقارن کال/پوت)</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">ZERO-RISK ARBITRAGE</span>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md w-full">
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#067a54]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">کل فرصت‌های آربیتراژ</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono mt-1" id="cv-st">۰</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[22px]">balance</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#8a6006]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-tertiary font-bold">بهترین بازده سالانه</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-tertiary font-mono mt-1" id="cv-sbr">—</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                <span class="material-symbols-outlined text-[22px]">trending_up</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#1560c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">میانگین روز تا سررسید</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-primary font-mono mt-1" id="cv-savg">—</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">event</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative overflow-hidden bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div class="absolute top-0 inset-x-0 h-1 bg-[#7128c9]"></div>
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-body-sm text-body-sm text-on-surface-variant">تنوع نمادهای پایه</span>
+                <span class="font-label-lg text-[1.6rem] font-bold text-on-surface font-mono mt-1" id="cv-su">۰</span>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[22px]">pie_chart</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-xl shadow-sm border border-outline-variant/30">
+          <div class="flex flex-wrap items-center gap-space-md">
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+              <select id="cv-fu" onchange="renderConversion()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه نمادهای پایه</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_month</span>
+              <select id="cv-fe" onchange="renderConversion()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer">
+                <option value="">همه سررسیدها</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[18px] text-on-surface-variant">sort</span>
+              <select id="cv-fs" onchange="renderConversion()" class="bg-transparent text-on-surface font-title-md text-title-md focus:outline-none cursor-pointer font-bold">
+                <option value="annual">بیشترین بازده سالانه %</option>
+                <option value="ret">بیشترین بازده کل %</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col border border-outline-variant/30">
+          <div class="flex items-center justify-between px-space-lg py-space-sm bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm border-b border-outline-variant/30">
+            <span class="font-bold text-on-surface flex items-center gap-1">
+              <span class="h-2 w-2 rounded-full bg-secondary"></span>
+              جدول ترکیب‌های Conversion (آربیتراژ خرید سهم + خرید پوت + فروش کال)
+            </span>
+            <span class="font-label-sm text-label-sm font-mono" id="cv-tcnt">۰ ترکیب</span>
+          </div>
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-right border-collapse whitespace-nowrap">
+              <thead>
+                <tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider h-9 border-b border-outline-variant/30">
+                  <th class="px-space-md py-1 text-center font-bold">#</th>
+                  <th class="px-space-md py-1 font-bold">نماد پایه</th>
+                  <th class="px-space-md py-1 font-bold">نماد کال</th>
+                  <th class="px-space-md py-1 font-bold">نماد پوت</th>
+                  <th class="px-space-md py-1 font-bold">سررسید</th>
+                  <th class="px-space-md py-1 font-bold">روز</th>
+                  <th class="px-space-md py-1 font-bold">قیمت سهم S</th>
+                  <th class="px-space-md py-1 font-bold">K اعمال مشترک</th>
+                  <th class="px-space-md py-1 font-bold">هزینه خالص</th>
+                  <th class="px-space-md py-1 font-bold text-secondary">بازده ماهانه %</th>
+                  <th class="px-space-md py-1 font-bold text-secondary">بازده سالانه %</th>
+                  <th class="px-space-md py-1 text-center font-bold">محاسبه</th>
+                </tr>
+              </thead>
+              <tbody id="cv-tb" class="divide-y divide-outline-variant/20 text-on-surface font-body-sm text-body-sm">
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SCREEN 5: EDUCATION & STRATEGY GUIDES                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="page-edu" class="page-view hidden flex-col w-full">
+      <div class="flex flex-col gap-space-lg p-space-lg w-full">
+        
+        <div class="flex flex-col gap-space-sm bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-outline-variant/30">
+          <h2 class="font-headline-md text-headline-md text-primary font-bold">راهنمای استراتژی‌های مشتقه و تحلیل سود/زیان بورس تهران</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">آموزش گام‌به‌گام نحوه طراحی موقعیت‌های پوشش ریسک و آربیتراژ به همراه مدل‌سازی ریاضی و پارامترهای بلک-شولز</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+          
+          <!-- Guide 1: Covered Call -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+                <span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm font-bold">استراتژی ۰۱</span>
+                <span class="font-title-md font-bold text-secondary">Covered Call (کاوردکال)</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-md leading-relaxed">
+                زمانی مناسب است که سهامدار هستید و انتظار رشد محدود یا بازار رنج دارید. با فروش اختیار خرید (کال) روی سهام، درآمد اضافه از پرمیوم کسب می‌کنید. اگر سهم زیر استرایک بماند، پرمیوم را نگه می‌دارید.
+              </p>
+              <div class="grid grid-cols-3 gap-space-sm mt-space-md pt-space-md border-t border-outline-variant/20 font-body-sm">
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">ریسک</span>
+                  <div class="font-bold text-error mt-1">افت قیمت سهم</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">حداکثر سود</span>
+                  <div class="font-bold text-secondary mt-1">K + P − S</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">نقطه سر به سر</span>
+                  <div class="font-bold text-primary mt-1">S − P</div>
+                </div>
+              </div>
+            </div>
+            <button onclick="switchTab('cc')" class="mt-space-md px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-body-sm transition-colors text-center cursor-pointer">
+              مشاهده فرصت‌های زنده کاوردکال ←
+            </button>
+          </div>
+
+          <!-- Guide 2: Bull Call Spread -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+                <span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm font-bold">استراتژی ۰۲</span>
+                <span class="font-title-md font-bold text-primary">Bull Call Spread (اسپرد صعودی خرید)</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-md leading-relaxed">
+                خرید اختیار کال در استرایک پایین‌تر (K₁) و هم‌زمان فروش اختیار کال در استرایک بالاتر (K₂) با همان سررسید. هزینه ورودی به شدت کاهش یافته و ریسک در زیان خالص محدود می‌شود.
+              </p>
+              <div class="grid grid-cols-3 gap-space-sm mt-space-md pt-space-md border-t border-outline-variant/20 font-body-sm">
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">حداکثر ضرر</span>
+                  <div class="font-bold text-error mt-1">Net Debit (P₁ - P₂)</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">حداکثر سود</span>
+                  <div class="font-bold text-secondary mt-1">K₂ − K₁ − Debit</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">سر به سر</span>
+                  <div class="font-bold text-primary mt-1">K₁ + Debit</div>
+                </div>
+              </div>
+            </div>
+            <button onclick="switchTab('bcs')" class="mt-space-md px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-body-sm transition-colors text-center cursor-pointer">
+              مشاهده فرصت‌های زنده Bull Call Spread ←
+            </button>
+          </div>
+
+          <!-- Guide 3: Collar -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+                <span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm font-bold">استراتژی ۰۳</span>
+                <span class="font-title-md font-bold text-[#7128c9]">Collar (بیمه سبد سهام)</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-md leading-relaxed">
+                ترکیب سهم + خرید پوت (محافظت در برابر افت شدید) + فروش کال (تأمین هزینه خرید پوت). این استراتژی هم کف ضرر را مسدود می‌کند و هم سقف سود را تعیین می‌نماید.
+              </p>
+              <div class="grid grid-cols-3 gap-space-sm mt-space-md pt-space-md border-t border-outline-variant/20 font-body-sm">
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">کف ضرر</span>
+                  <div class="font-bold text-error mt-1">Kp − S + NetP</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">سقف سود</span>
+                  <div class="font-bold text-secondary mt-1">Kc − S + NetP</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">سر به سر</span>
+                  <div class="font-bold text-primary mt-1">S − NetP</div>
+                </div>
+              </div>
+            </div>
+            <button onclick="switchTab('collar')" class="mt-space-md px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-body-sm transition-colors text-center cursor-pointer">
+              مشاهده فرصت‌های زنده Collar ←
+            </button>
+          </div>
+
+          <!-- Guide 4: Conversion Arbitrage -->
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between border border-outline-variant/30">
+            <div>
+              <div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+                <span class="px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-sm font-bold">استراتژی ۰۴</span>
+                <span class="font-title-md font-bold text-tertiary">Conversion (آربیتراژ بدون ریسک)</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-md leading-relaxed">
+                بر اساس اصل هم‌ارزی اختیار خرید و فروش (Put-Call Parity)، با خرید سهم + خرید پوت + فروش کال در استرایک مشترک، یک بازده قطعی معادل یا بالاتر از نرخ بهره بدون ریسک تضمین می‌شود.
+              </p>
+              <div class="grid grid-cols-3 gap-space-sm mt-space-md pt-space-md border-t border-outline-variant/20 font-body-sm">
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">هزینه اولیه</span>
+                  <div class="font-bold text-on-surface mt-1">S + Pp − Pc</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">سود تضمین‌شده</span>
+                  <div class="font-bold text-secondary mt-1">K − Net Cost</div>
+                </div>
+                <div class="bg-surface-container-low p-2 rounded text-center">
+                  <span class="text-on-surface-variant text-[11px]">ریسک</span>
+                  <div class="font-bold text-secondary mt-1">صفر (قفل‌شده)</div>
+                </div>
+              </div>
+            </div>
+            <button onclick="switchTab('conversion')" class="mt-space-md px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-bold text-body-sm transition-colors text-center cursor-pointer">
+              مشاهده فرصت‌های زنده Conversion ←
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- MODALS                                                 -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <!-- Modal 1: Strategy Detail & Calculator Modal -->
+  <div id="cm-overlay" class="terminal-modal-overlay hidden" onclick="if(event.target===this)closeCalc()">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden border border-outline-variant/40 animate-in fade-in zoom-in duration-150" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-space-lg py-space-md bg-surface-container-low border-b border-outline-variant/30">
+        <div>
+          <h3 class="font-headline-sm font-bold text-on-surface" id="cm-title">🧮 محاسبه‌گر استراتژی</h3>
+          <p class="font-body-sm text-on-surface-variant text-[11px]" id="cm-subtitle"></p>
+        </div>
+        <button onclick="closeCalc()" class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <div class="p-space-lg flex flex-col gap-space-md">
+        <span class="font-title-md font-bold text-on-surface">ورودی‌های قابل ویرایش:</span>
+        <div class="grid grid-cols-2 gap-space-md" id="cm-inputs"></div>
+        <div class="h-px bg-outline-variant/30 my-space-xs"></div>
+        <span class="font-title-md font-bold text-on-surface">خروجی و تحلیل سود/زیان:</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm" id="cm-results"></div>
+      </div>
+      <div class="px-space-lg py-space-sm bg-surface-container-low flex justify-end">
+        <button onclick="closeCalc()" class="px-4 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-bold text-body-sm cursor-pointer">
+          بستن
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Order Basket Modal -->
+  <div id="basket-modal" class="terminal-modal-overlay hidden" onclick="if(event.target===this)closeBasketModal()">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden border border-outline-variant/40" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-space-lg py-space-md bg-surface-container-low border-b border-outline-variant/30">
+        <div class="flex items-center gap-space-xs text-primary font-bold">
+          <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+          <span>سبد سفارشات آماده ارسال دوپایه</span>
+        </div>
+        <button onclick="closeBasketModal()" class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <div class="p-space-lg flex flex-col gap-space-md">
+        <div id="basket-empty" class="text-center py-8 text-on-surface-variant">
+          <span class="material-symbols-outlined text-[48px] text-outline opacity-40">shopping_basket</span>
+          <p class="mt-2 font-body-md">سبد سفارشات در حال حاضر خالی است.</p>
+          <p class="font-body-sm text-[11px] text-outline">با فشردن دکمه «سفارش دوپایه» در جداول، سفارش را به این سبد اضافه کنید.</p>
+        </div>
+        <div id="basket-items-list" class="flex flex-col gap-space-sm hidden"></div>
+      </div>
+      <div class="px-space-lg py-space-sm bg-surface-container-low flex justify-between items-center border-t border-outline-variant/30">
+        <button onclick="clearBasket()" class="text-error font-body-sm hover:underline cursor-pointer">پاکسازی سبد</button>
+        <button onclick="alert('سفارشات دوپایه شبیه‌سازی شدند.'); closeBasketModal();" class="px-4 py-1.5 rounded-lg bg-primary text-on-primary font-bold text-body-sm cursor-pointer hover:bg-primary-container">
+          تایید و ارسال به کارگزاری
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Settings Modal -->
+  <div id="settings-modal" class="terminal-modal-overlay hidden" onclick="if(event.target===this)closeSettingsModal()">
+    <div class="bg-surface-container-lowest rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-outline-variant/40" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-space-lg py-space-md bg-surface-container-low border-b border-outline-variant/30">
+        <div class="flex items-center gap-space-xs text-on-surface font-bold">
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+          <span>تنظیمات ترمینال و مدل قیمت‌گذاری</span>
+        </div>
+        <button onclick="closeSettingsModal()" class="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <div class="p-space-lg flex flex-col gap-space-md">
+        <div class="flex flex-col">
+          <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">نرخ بهره بدون ریسک (Risk-free Rate %):</label>
+          <input type="number" id="setting-rf" step="0.5" value="28.5" class="bg-surface-container-low px-3 py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20"/>
+        </div>
+        <div class="flex flex-col">
+          <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">انحراف معیار میانگین نوسان ضمنی بازار (IV %):</label>
+          <input type="number" id="setting-iv" step="0.5" value="41.2" class="bg-surface-container-low px-3 py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20"/>
+        </div>
+        <div class="flex flex-col">
+          <label class="font-body-sm text-body-sm text-on-surface-variant mb-1">فاصله زمانی بازخوانی خودکار (ثانیه):</label>
+          <input type="number" id="setting-refresh-sec" step="5" value="60" min="15" class="bg-surface-container-low px-3 py-1.5 rounded-lg font-mono text-left focus:outline-none border border-outline-variant/20"/>
+        </div>
+      </div>
+      <div class="px-space-lg py-space-sm bg-surface-container-low flex justify-end gap-space-sm border-t border-outline-variant/30">
+        <button onclick="closeSettingsModal()" class="px-4 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-bold text-body-sm cursor-pointer">لغو</button>
+        <button onclick="saveSettings()" class="px-4 py-1.5 rounded-lg bg-primary text-on-primary font-bold text-body-sm cursor-pointer">ذخیره تنظیمات</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-surface-container-low border-t border-outline-variant/40 py-2.5 mt-auto">
+    <div class="w-full px-4 flex flex-wrap items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+      <div class="flex items-center gap-space-lg flex-wrap">
+        <div class="flex items-center gap-space-xs">
+          <span>تعداد کل قراردادهای مشتقه فعال:</span>
+          <span class="font-label-md text-label-md font-bold text-on-surface font-mono" id="ftr-total-contracts">۴۹۲+</span>
+        </div>
+        <div class="h-3 w-px bg-outline-variant/60"></div>
+        <div class="flex items-center gap-space-xs">
+          <span>حجم معاملات روز:</span>
+          <span class="font-label-md text-label-md font-bold text-on-surface font-mono" id="ftr-total-vol">۱,۴۲۰ میلیارد ریال</span>
+        </div>
+        <div class="h-3 w-px bg-outline-variant/60"></div>
+        <div class="flex items-center gap-space-xs">
+          <span>شاخص کل بورس:</span>
+          <span class="font-label-md text-label-md font-bold text-secondary font-mono">۲,۱۴۵,۸۹۰ (+۱.۲٪)</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-lg">
+        <div class="flex items-center gap-space-xs">
+          <span>آخرین همگام‌سازی:</span>
+          <span class="font-label-md text-label-md text-on-surface font-mono" id="lupd">—</span>
+        </div>
+        <div class="h-3 w-px bg-outline-variant/60"></div>
+        <div class="flex items-center gap-space-xs">
+          <span>نسخه ترمینال:</span>
+          <span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-primary font-bold font-mono">v2.4 Pro</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

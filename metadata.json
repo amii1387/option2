@@ -1,0 +1,8 @@
+{
+  "name": "Options Dashboard",
+  "description": "TSE Options Terminal - Live algorithmic options strategies, matrix rankings, Greeks analysis, and interactive payoff calculator for Tehran Stock Exchange (TSETMC).",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
